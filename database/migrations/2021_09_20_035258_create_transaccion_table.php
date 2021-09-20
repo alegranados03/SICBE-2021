@@ -15,7 +15,8 @@ class CreateTransaccionTable extends Migration
     public function up()
     {
         Schema::create('transaccion', function (Blueprint $table) {
-            $table->id('id_transaccion');
+            //$table->id('id_transaccion');
+            $table->foreignId('id_transaccion');
             $table->string('tipo_transaccion');
             $table->decimal('monto_transaccion', $precision = 8, $scale = 2);
         });

@@ -16,7 +16,8 @@ class CreateCuentaTable extends Migration
     {
         Schema::create('cuenta', function (Blueprint $table) {
             $table->id('id_cuenta');
-            $table->id('cue_id_cuenta');
+            //$table->id('cue_id_cuenta');
+            $table->integer('cue_id_cuenta');
             $table->string('nombre_cuenta');
             $table->string('tipo_cuenta');
             $table->float('debe', 8, 2);
