@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTransaccionCuentaTable extends Migration
 {
+    protected $connection = 'mysql';
     /**
      * Run the migrations.
      *
@@ -14,8 +15,12 @@ class CreateTransaccionCuentaTable extends Migration
     public function up()
     {
         Schema::create('transaccion_cuenta', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('id_trans');
+            $table->id('id_transaccion');
+            $table->id('id_cuenta');
+            $table->float('debe_trans', 8, 2);
+            $table->float('haber_trans', 8, 2);
+            
         });
     }
 

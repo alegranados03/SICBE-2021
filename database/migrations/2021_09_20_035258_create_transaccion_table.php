@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTransaccionTable extends Migration
 {
+    protected $connection = 'mysql';
     /**
      * Run the migrations.
      *
@@ -14,13 +15,14 @@ class CreateTransaccionTable extends Migration
     public function up()
     {
         Schema::create('transaccion', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('id_transaccion');
+            $table->string('tipo_transaccion');
+            $table->decimal('monto_transaccion', $precision = 8, $scale = 2);
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations.xa
      *
      * @return void
      */
