@@ -15,17 +15,14 @@ class CreateCuentaTable extends Migration
     public function up()
     {
         Schema::create('cuenta', function (Blueprint $table) {
-            $table->id('id_cuenta');
-            //$table->id('cue_id_cuenta');
-            $table->integer('cue_id_cuenta');
+            $table->id();
+            $table->string('numero_cuenta');
+            $table->string('numero_real');
             $table->string('nombre_cuenta');
-            $table->string('tipo_cuenta');
-            $table->float('debe', 8, 2);
-            $table->float('haber', 8, 2);
-            $table->decimal('correlativo', $precision = 8, $scale = 2);
-            $table->decimal('numero_cuenta', $precision = 8, $scale = 2);
-
-
+            $table->foreignId('padre_id')->references('id')->on('cuenta');
+            $table->decimal('debe', $precision = 8, $scale = 2);
+            $table->decimal('haber', $precision = 8, $scale = 2);
+            $table->foreignId('tipo_id')->references('id')->on('tipo_cuenta');
             $table->timestamps();
         });
     }
