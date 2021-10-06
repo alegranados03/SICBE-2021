@@ -19,7 +19,7 @@ class CreateCuentaTable extends Migration
             $table->string('numero_cuenta');
             $table->string('numero_real');
             $table->string('nombre_cuenta');
-            $table->foreignId('padre_id')->references('id')->on('cuenta');
+            $table->foreignId('padre_id')->references('id')->on('cuenta')->nullable();
             $table->decimal('debe', $precision = 8, $scale = 2);
             $table->decimal('haber', $precision = 8, $scale = 2);
             $table->foreignId('tipo_id')->references('id')->on('tipo_cuenta');

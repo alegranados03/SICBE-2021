@@ -19,6 +19,7 @@ class CreateTransaccionTable extends Migration
             $table->decimal('total_debe', $precision = 8, $scale = 2);
             $table->decimal('total_haber', $precision = 8, $scale = 2);
             $table->string('descripcion',5000);
+            $table->timestamps();
         });
     }
 

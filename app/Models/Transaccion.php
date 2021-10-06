@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Transaccion extends Model
 {
     use HasFactory;
-    protected $fillable=[];
+    protected $fillable=['id', 'total_debe', 'total_haber', 'descripcion'];
+    protected $table='transaccion';
 
     public function movimientos()
     {

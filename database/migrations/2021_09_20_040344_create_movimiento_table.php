@@ -18,7 +18,8 @@ class CreateMovimientoTable extends Migration
              $table->foreignId('transaccion_id')->references('id')->on('transaccion');
              $table->foreignId('cuenta_id')->references('id')->on('cuenta');
              $table->decimal('debe', $precision = 8, $scale = 2);
-             $table->decimal('haber', $precision = 8, $scale = 2);            
+             $table->decimal('haber', $precision = 8, $scale = 2);        
+             $table->timestamps();    
         });
     }
 

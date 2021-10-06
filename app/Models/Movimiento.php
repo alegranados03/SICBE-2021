@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Movimiento extends Model
 {
     use HasFactory;
-    protected $fillable=[];
+    protected $table='movimiento';
+    protected $fillable=['id', 'transaccion_id', 'cuenta_id', 'debe', 'haber'];
 
     public function cuenta()
     {

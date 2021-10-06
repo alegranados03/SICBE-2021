@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Cuenta extends Model
 {
     use HasFactory;
-    protected $fillable=[];
+    protected $fillable=['id', 'numero_cuenta', 'numero_real', 'nombre_cuenta', 'padre_id', 'debe', 'haber', 'tipo_id'];
+    protected $table='cuenta';
 
     public function movimientos()
     {
