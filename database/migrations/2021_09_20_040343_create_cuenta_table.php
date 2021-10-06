@@ -17,7 +17,6 @@ class CreateCuentaTable extends Migration
         Schema::create('cuenta', function (Blueprint $table) {
             $table->id();
             $table->string('numero_cuenta');
-            $table->string('numero_real');
             $table->string('nombre_cuenta');
             $table->foreignId('padre_id')->references('id')->on('cuenta')->nullable();
             $table->decimal('debe', $precision = 8, $scale = 2);
