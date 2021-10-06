@@ -14,17 +14,8 @@ class CuentaController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $cuentas = Cuenta::all();
+        return Response::json(['cuentas'=>$cuentas],200);
     }
 
     /**
@@ -35,7 +26,18 @@ class CuentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cuenta = new Cuenta();
+        $cuenta->numero_cuenta = $request->numero_cuenta;
+        $cuenta->nombre_cuenta = $request->nombre_cuenta;
+        $cuenta->padre_id = $request->padre_id;
+        $cuenta->debe = 0.0;
+        $cuenta->haber = 0.0;
+        $cuenta->tipo_id = $request->tipo_id;
+        if($cuenta->save()){
+            return Response::json(['cuenta'=>$cuenta],200);
+        }else{
+            return Response::json(['error'=>'Algo salió mal'],400);
+        }
     }
 
     /**
@@ -44,20 +46,14 @@ class CuentaController extends Controller
      * @param  \App\Models\Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function show(Cuenta $cuenta)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cuenta  $cuenta
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cuenta $cuenta)
-    {
-        //
+        $cuenta = Cuenta::findOrFail($id);
+        if(isset($cuenta)){
+            return Response::json(['cuenta'=>$cuenta],200);
+        }else{
+            return Response::json(['error'=>'Algo salió mal'],400);
+        }
     }
 
     /**
@@ -69,7 +65,16 @@ class CuentaController extends Controller
      */
     public function update(Request $request, Cuenta $cuenta)
     {
-        //
+        $cuenta = Cuenta::findOrFail($id);
+        $cuenta->nombre_cuenta = $request->nombre_cuenta;
+        $cuenta->debe = 0.0;
+        $cuenta->haber = 0.0;
+        $cuenta->tipo_id = $request->tipo_id;
+        if($cuenta->save()){
+            return Response::json(['cuenta'=>$cuenta],200);
+        }else{
+            return Response::json(['error'=>'Algo salió mal'],400);
+        }
     }
 
     /**
