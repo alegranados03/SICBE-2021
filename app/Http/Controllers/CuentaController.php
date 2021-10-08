@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cuenta;
 use Illuminate\Http\Request;
+use Response;
 
 class CuentaController extends Controller
 {
@@ -26,6 +27,8 @@ class CuentaController extends Controller
      */
     public function store(Request $request)
     {
+
+        return Response::json(['request'=>$request->all()]);
         $cuenta = new Cuenta();
         $cuenta->numero_cuenta = $request->numero_cuenta;
         $cuenta->nombre_cuenta = $request->nombre_cuenta;
@@ -63,7 +66,7 @@ class CuentaController extends Controller
      * @param  \App\Models\Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cuenta $cuenta)
+    public function update(Request $request, $id)
     {
         $cuenta = Cuenta::findOrFail($id);
         $cuenta->nombre_cuenta = $request->nombre_cuenta;
@@ -83,7 +86,7 @@ class CuentaController extends Controller
      * @param  \App\Models\Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cuenta $cuenta)
+    public function destroy($id)
     {
         //
     }
