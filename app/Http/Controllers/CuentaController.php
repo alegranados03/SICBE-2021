@@ -15,7 +15,10 @@ class CuentaController extends Controller
      */
     public function index()
     {
-        $cuentas = Cuenta::all();
+        $cuentas = Cuenta::where('padre_id', '=' , NULL)->get();
+        foreach($cuentas as $cuenta){
+            $cuenta->obtenerCuentas();
+        }
         return Response::json(['cuentas'=>$cuentas],200);
     }
 
