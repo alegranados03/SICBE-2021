@@ -15,4 +15,9 @@ class Transaccion extends Model
     {
         return $this->hasMany('App\Models\Movimiento', 'transaccion_id');
     }
+
+    public function cuentas()
+    {
+        return $this->belongsToMany(Cuenta::class,'movimiento','transaccion_id', 'cuenta_id');
+    }
 }

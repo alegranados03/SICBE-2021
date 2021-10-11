@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaccion;
 use Illuminate\Http\Request;
 use Response;
+use DB;
 
 class TransaccionController extends Controller
 {
@@ -14,8 +15,24 @@ class TransaccionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    { 
+        $transacciones  = Transaccion::all();
+        
+        $fechas = [];
+        foreach($transacciones as $transaccion){
+            $transaccion->movimientos;
+            foreach($transaccion->movimientos as $movimiento){
+                $movimiento->cuenta;
+            }
+            $stringDate = $transaccion->created_at->toDateString();
+            if(array_key_exists($stringDate,$fechas)){
+                array_push($fechas[$stringDate],$transaccion);
+            }else{
+                $fechas[$stringDate] = [$transaccion];
+            }
+        }
+
+        return Response::json(['fechas'=>$fechas],200);
     }
 
  

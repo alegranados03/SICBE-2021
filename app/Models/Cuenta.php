@@ -27,6 +27,12 @@ class Cuenta extends Model
         return $this->belongsTo('App\Models\Cuenta', 'padre_id');
     }
 
+    public function transacciones()
+    {
+        return $this->belongsToMany(Transaccion::class,'movimiento', 'cuenta_id', 'transaccion_id');
+    }
+
+ 
     public function obtenerCuentas(){
         if(sizeof($this->cuentas)>0){
             foreach($this->cuentas as $cuenta){

@@ -212,6 +212,11 @@ class catalogoCuentasSeeder extends Seeder
             (195,'520103','Dividendos',192,0,0, 3),
             (196,'53','RESULTADOS EXTRAORDINARIOS',187,0,0, 3),
             (197,'5301','INGRESOS EXTRAORDINARIOS',196,0,0, 3);
+
+            INSERT INTO `transaccion`(`id`, `total_debe`, `total_haber`, `descripcion`) VALUES (1,100,100,'Transaccion 1'),(2,200,200,'Transaccion 2'),(3,300,300,'Transaccion 3');
+
+
+            INSERT INTO `movimiento`(`id`, `transaccion_id`, `cuenta_id`, `debe`, `haber`) VALUES (1,1,1,50,50),(2,1,2,50,50),(3,2,1,100,100),(4,2,2,100,100),(5,3,1,150,150),(6,3,2,150,150);
          * 
          * 
          * 

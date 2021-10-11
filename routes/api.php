@@ -25,6 +25,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+/*Rutas de cuentas*/
 Route::get('cuentas',[CuentaController::class,'index']);
 Route::post('cuentas',[CuentaController::class,'store']);
 Route::put('cuentas/{id}',[CuentaController::class,'update']);
+Route::get('cuentas/libroMayor',[CuentaController::class,'libroMayor']);
+
+/*Rutas de transacciones*/
+Route::get('transacciones',[TransaccionController::class,'index']);
+Route::post('transacciones',[TransaccionController::class,'store']);
+Route::put('transacciones/{id}',[TransaccionController::class,'update']);

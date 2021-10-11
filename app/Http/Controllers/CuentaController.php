@@ -83,6 +83,22 @@ class CuentaController extends Controller
         }
     }
 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function libroMayor()
+    {   //método para libro diario
+       // $transacciones  = Transaccion::where('created_at','=',fecha)->get();
+       $cuentas  = Cuenta::all();
+       foreach($cuentas as $cuenta){
+           $cuenta->movimientos;
+       }
+        return Response::json(['cuentas'=>$cuentas],200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
