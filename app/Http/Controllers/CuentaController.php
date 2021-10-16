@@ -8,6 +8,85 @@ use Response;
 
 class CuentaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->idCuentasResultado = [
+            26,
+            30,
+            51,
+            56,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+        ];
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -111,12 +190,28 @@ class CuentaController extends Controller
     }
 
     public function balanceComprobacion(){
-        $cuentas = $this->cierreCuentas();
+        $cuentas = $this->cierreCuentas(Cuenta::all());
         return Response::json(['cuentas'=>$cuentas],200);
     }
 
-    public function cierreCuentas(){
-        $cuentas = Cuenta::all();
+    public function estadoCapital(){
+        $cuentas = $this->cierreCuentas(Cuenta::where('numero_cuenta','LIKE','3%')->get());
+        return Response::json(['cuentas'=>$cuentas],200);   
+    }
+
+    public function estadoResultados(){
+        $cuentas = $this->cierreCuentas($cuentas = Cuenta::all());
+        $responseCuentas = ['cuentas'=>[]];
+        foreach($cuentas as $cuenta){
+            if(in_array($cuenta->id,$this->idCuentasResultado)){
+                $responseCuentas['cuentas'][]=$cuenta;
+            }
+        }
+
+        return Response::json(['cuentas'=>$responseCuentas],200);
+    }
+    
+    public function cierreCuentas($cuentas){
         foreach($cuentas as $cuenta){
             $cuenta->total_debe= 0.0 ;
             $cuenta->total_haber = 0.0;

@@ -31,6 +31,8 @@ Route::post('cuentas',[CuentaController::class,'store']);
 Route::put('cuentas/{id}',[CuentaController::class,'update']);
 Route::get('cuentas/libroMayor',[CuentaController::class,'libroMayor']);
 Route::get('cuentas/balanceComprobacion',[CuentaController::class,'balanceComprobacion']);
+Route::get('cuentas/estadoCapital',[CuentaController::class,'estadoCapital']);
+Route::get('cuentas/estadoResultados',[CuentaController::class,'estadoResultados']);
 
 /*Rutas de transacciones*/
 Route::get('transacciones',[TransaccionController::class,'index']);
