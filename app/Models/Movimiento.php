@@ -10,6 +10,7 @@ class Movimiento extends Model
     use HasFactory;
     protected $table='movimiento';
     protected $fillable=['id', 'transaccion_id', 'cuenta_id', 'debe', 'haber'];
+    protected $casts = ['debe' => 'float','haber'=>'float'];
 
     public function cuenta()
     {

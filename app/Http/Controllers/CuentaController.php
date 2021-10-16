@@ -109,4 +109,31 @@ class CuentaController extends Controller
     {
         //
     }
+
+    public function balanceComprobacion(){
+        $cuentas = $this->cierreCuentas();
+        return Response::json(['cuentas'=>$cuentas],200);
+    }
+
+    public function cierreCuentas(){
+        $cuentas = Cuenta::all();
+        foreach($cuentas as $cuenta){
+            $cuenta->total_debe= 0.0 ;
+            $cuenta->total_haber = 0.0;
+            $cuenta->movimientos = $cuenta->movimientos()->where('debe','>=','0')->get();
+            $total_debe = 0;
+            $total_haber = 0;
+            foreach($cuenta->movimientos as $movimiento){
+                 $total_debe += $movimiento->debe;
+                 $total_haber += $movimiento->haber;
+            }
+            $cierre = $total_debe - $total_haber;
+            if($cierre > 0){
+                $cuenta->total_debe = number_format($cierre,2);
+            }else if($cierre < 0){
+                $cuenta->total_haber = -1*number_format($cierre,2);
+            }
+        }
+        return $cuentas;
+    }
 }

@@ -10,7 +10,7 @@ class Cuenta extends Model
     use HasFactory;
     protected $fillable=['id', 'numero_cuenta', 'numero_real', 'nombre_cuenta', 'padre_id', 'debe', 'haber', 'tipo_id'];
     protected $table='cuenta';
-
+    protected $casts = ['debe' => 'float','haber'=>'float','total_debe' => 'float','total_haber'=>'float'];
 
     public function movimientos()
     {

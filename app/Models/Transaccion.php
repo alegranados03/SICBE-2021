@@ -10,6 +10,7 @@ class Transaccion extends Model
     use HasFactory;
     protected $fillable=['id', 'total_debe', 'total_haber', 'descripcion'];
     protected $table='transaccion';
+    protected $casts = ['total_debe' => 'float','total_haber'=>'float'];
 
     public function movimientos()
     {
